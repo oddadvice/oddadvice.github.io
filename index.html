@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Odd Advice PWA">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Odd Advice">
+    <title>Odd Advice</title>
+    <link rel="shortcut icon" href=images/logo-32x32.png>
+    <link rel="manifest" href="manifest.json">
+    <link href="css/material.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Always shows a header, even in smaller screens. -->
+<div class="teamcast-pwa mdl-layout mdl-js-layout mdl-layout--fixed-header invisible">
+    <header class="mdl-layout__header mdl-layout__header--transparent is-casting-shadow">
+        <button class="inbox-back-btn mdl-layout-icon mdl-button mdl-js-button mdl-button--icon hidden">
+            <i class="material-icons">arrow_back</i>
+        </button>
+        <div class="mdl-layout__header-row">
+            <span class="mdl-layout-title">Odd Advice</span>
+            <span class="mdl-layout-title hidden">Inbox</span>
+            <span class="teamcast-logo"></span>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Odd Advice</span>
+        <nav class="mdl-navigation">
+            <a id="about-btn" class="mdl-navigation__link" href=""><i class="material-icons">info</i>&nbsp;&nbsp;About</a>
+            <a id="profile-btn" class="mdl-navigation__link" href=""><i class="material-icons">account_box</i>&nbsp;&nbsp;Profile</a>
+            <a id="inbox-btn" class="mdl-navigation__link" href=""><i class="material-icons">inbox</i>&nbsp;&nbsp;Inbox</a>
+            <a id="unsubscribe-btn" class="mdl-navigation__link" href=""><i class="material-icons">cancel</i>&nbsp;&nbsp;Unsubscribe</a>
+        </nav>
+    </div>
+    <main class="mdl-layout__content">
+        <div class="loading-overlay">
+            <div class="loading-overlay-row">
+                <div class="loading-overlay-col">
+                    <div class="mdl-spinner mdl-js-spinner is-active"></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="not-supported-card mdl-card">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Sorry...</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <p>
+                        <strong>Your browser does not support Progressive Web Apps.</strong>
+                    </p>
+                    <p>
+                        Please open the <span class="text-color-blue">Odd Advice</span> page using the <strong>latest versions</strong> of the following compatible browsers:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Mobile</strong>:
+                            <ul>
+                                <li>Google Chrome for Android</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Desktop</strong>:
+                            <ul>
+                                <li>Google Chrome</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="subscription-card mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Welcome</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <form id="subscription-form">
+                        Fill up the form below and subscribe to receive notifications from <strong class="text-color-blue">Odd Advice</strong>.
+                        <div class="align-center">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="firstname">
+                                <label class="mdl-textfield__label" for="firstname">First Name...</label>
+                            </div>
+                        </div>
+                        <div class="align-center">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="lastname">
+                                <label class="mdl-textfield__label" for="firstname">Last Name...</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <button id="subscribe-btn" class="mdl-button mdl-js-button mdl-js-ripple-effect" disabled>
+                        Subscribe
+                    </button>
+                </div>
+                <div class="mdl-card__menu">
+                </div>
+            </div>
+
+            <div class="unsubscribe-card mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                    <h2>Welcome <span class="employee-name"></span></h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <p>You are currently subscribed to <strong class="text-color-blue">Odd Advice</strong>.</p>
+                    <p>You can opt out from receiving notifications by tapping on "<strong>Unsubscribe</strong>" from the app menu.</p>
+                </div>
+            </div>
+
+            <div class="unsubscribe-card mdl-card mdl-shadow--2dp testimonial-card">
+                <p>
+                    &ldquo;Let me tell you, this Odd Advice is such an amazing thing, really.&rdquo;
+                </p>
+            </div>
+
+            <div class="about-card mdl-card mdl-shadow--2dp has-media">
+                <button class="mdl-button mdl-js-button card-close-btn">
+                    <i class="material-icons">close</i>
+                </button>
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Team Jack Daniel's</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <p>Meet the team to beat:</p>
+                    <ul>
+                        <li><strong class="text-color-blue">J</strong>ames Sarmiento</li>
+                        <li><strong class="text-color-blue">A</strong>lex Basa</li>
+                        <li><strong class="text-color-blue">C</strong>arlo Cordoviz</li>
+                        <li><strong class="text-color-blue">K</strong>enneth So</li>
+                        <li><strong class="text-color-blue">D</strong>J "Mr. Asurion" Pichay</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="profile-card mdl-card mdl-shadow--2dp">
+                <button class="mdl-button mdl-js-button card-close-btn">
+                    <i class="material-icons">close</i>
+                </button>
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Profile</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <form id="profile-form">
+                        <table width="100%" cellpadding="2px">
+                            <tbody>
+                            <tr>
+                                <td width="50%" align="right" valign="top">Subscription ID:</td>
+                                <td width="50%" align="left" valign="top"><input id="profile-accountid" type="text" readonly/></td>
+                            </tr>
+                            <tr>
+                                <td align="right" valign="top">First Name:</td>
+                                <td align="left" valign="top"><input id="profile-firstname" type="text" readonly/></td>
+                            </tr>
+                            <tr>
+                                <td align="right" valign="top">Last Name:</td>
+                                <td align="left" valign="top"><input id="profile-lastname" type="text" readonly/></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+
+            <div class="notification-card mdl-card mdl-shadow--2dp">
+                <button id="notif-card-close-btn" class="mdl-button mdl-js-button card-close-btn">
+                    <i class="material-icons">close</i>
+                </button>
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text"></h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <p></p>
+                    <div class="options-container"></div>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <button type="button" id="respond-btn" class="mdl-button mdl-js-button mdl-js-ripple-effect" disabled>
+                        Send response
+                    </button>
+                </div>
+                <div class="mdl-card__menu">
+                </div>
+            </div>
+
+            <div class="cached-notification-card mdl-card mdl-shadow--2dp">
+                <button id="cached-notif-card-close-btn" class="mdl-button mdl-js-button card-close-btn">
+                    <i class="material-icons">close</i>
+                </button>
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text"></h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <p></p>
+                    <div class="options-container"></div>
+                </div>
+                <!--
+                <div class="mdl-card__actions mdl-card--border">
+                    <button type="button" class="mdl-button mdl-js-button mdl-js-ripple-effect" disabled>
+                        Send response
+                    </button>
+                </div>
+                -->
+            </div>
+
+            <div class="inbox-card mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__supporting-text">
+                    <ul class="mdl-list">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="mdl-mini-footer">
+        <div class="mdl-mini-footer__left-section">
+            <div class="mdl-logo">Team Jack Daniel's<br/>asurionhackathon<br/>2016 - Manila</div>
+        </div>
+    </footer>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/lodash.min.js"></script>
+<script src="js/material.min.js"></script>
+<script src="js/mustache.min.js"></script>
+<script src="js/main.js"></script>
+<script type="text/html" id="options-template">
+    <label class="mdl-radio mdl-js-radio" for="{{id}}">
+        <input type="radio" id="{{id}}" name="notif-options" class="mdl-radio__button" value="{{id}}">
+        <span class="mdl-radio__label">{{name}}</span>
+    </label>
+</script>
+<script type="text/html" id="notif-list-template">
+    <li class="mdl-list__item mdl-list__item--two-line">
+        <button type="button" class="mdl-button mdl-js-button mdl-js-ripple-effect" data-announcementid="{{announcementId}}">
+            <span class="mdl-list__item-primary-content">
+                <span>{{heading}}</span>
+                <span class="mdl-list__item-sub-title">{{trayMessage}}</span>
+                <span class="mdl-list__item-sub-title">{{createTime}}</span>
+            </span>
+        </button>
+    </li>
+</script>
+<script type="text/html" id="notif-list-empty-template">
+    <li class="mdl-list__item mdl-list__item--two-line">
+        <span class="mdl-list__item-primary-content">
+            <span>Your inbox is empty.</span>
+        </span>
+    </li>
+</script>
+</body>
+</html>
