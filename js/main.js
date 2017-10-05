@@ -224,7 +224,7 @@ if (('serviceWorker' in navigator) && ('PushManager' in window)) {
             }
         }).on("click", ".number-button", function(e) {
             var $srcElem = $(e.currentTarget);
-            
+
             if (!$srcElem.hasClass("selected")) {
                 if ($(".number-button.selected").length < 6) {
                     $srcElem.toggleClass("selected");
@@ -237,6 +237,9 @@ if (('serviceWorker' in navigator) && ('PushManager' in window)) {
                 }
             } else {
                 $srcElem.toggleClass("selected");
+                if ($(".number-button.selected").length < 6) {
+                    $("#analyze-button").prop("disabled", true);
+                }
             }
 
         })
