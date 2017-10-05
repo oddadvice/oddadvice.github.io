@@ -45,7 +45,7 @@ main {
     margin-bottom: 83px;
 }
 .page-content {
-    max-width: 600px;
+    max-width: 440px;
     margin: 0 auto;
     padding: 10px 10px 0;
     /*height: 100%;*/
@@ -78,6 +78,7 @@ main {
     background-repeat: no-repeat;
     z-index: 5;
     color: #2b1100;
+    border-bottom: solid 4px white;
 }
 .oddadvice-pwa.mdl-layout .mdl-layout__header .mdl-layout__drawer-button {
     color: #2b1100;
