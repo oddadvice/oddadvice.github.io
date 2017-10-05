@@ -104,16 +104,16 @@ main {
     text-align: center;
 }
 .oddadvice-pwa.mdl-layout .mdl-layout__content > .loading-overlay .mdl-spinner > .mdl-spinner__layer-1 {
-    border-color: #000;
+    border-color: #2b1100;
 }
 .oddadvice-pwa.mdl-layout .mdl-layout__content > .loading-overlay .mdl-spinner > .mdl-spinner__layer-2 {
-    border-color: #40B4E5;
+    border-color: #ffd42a;
 }
 .oddadvice-pwa.mdl-layout .mdl-layout__content > .loading-overlay .mdl-spinner > .mdl-spinner__layer-3 {
-    border-color: #82BC00;
+    border-color: #ff0000;
 }
 .oddadvice-pwa.mdl-layout .mdl-layout__content > .loading-overlay .mdl-spinner > .mdl-spinner__layer-4 {
-    border-color: #40B4E5;
+    border-color: #ffd42a;
 }
 .oddadvice-pwa.mdl-layout .mdl-card {
     width: 100%;

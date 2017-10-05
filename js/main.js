@@ -133,42 +133,6 @@ if (('serviceWorker' in navigator) && ('PushManager' in window)) {
             }
         }
 
-        /*serviceWorkerRegistration.pushManager.getSubscription()
-            .then(function(subscription) {
-                $(".loading-overlay").removeClass("hidden");
-                $(".mdl-card").hide();
-
-                if (!subscription) {
-                    $(".subscription-card").show()
-                        .promise()
-                        .done(function() {
-                            $("#subscribe-btn").prop("disabled", true);
-                        });
-                    $(".loading-overlay").addClass("hidden");
-                    return;
-                }
-
-                var profileObj = JSON.parse(localStorage.getItem("profile"));
-
-                $(".employee-name").html(profileObj.firstName.toLowerCase() + " " + profileObj.lastName.toLowerCase());
-                $(".unsubscribe-card, #unsubscribe-btn, #profile-btn, #inbox-btn").show();
-
-                console.log(JSON.stringify(subscription));
-
-                $("#profile-accountid").val(profileObj.accountId);
-                $("#profile-firstname").val(profileObj.firstName);
-                $("#profile-lastname").val(profileObj.lastName);
-
-                $(".loading-overlay").addClass("hidden");
-            })
-            .catch(function(err) {
-                console.log('Error during getSubscription()', err);
-                $(".loading-overlay").addClass("hidden");
-            });
-
-            */
-
-
         $(".mdl-card").hide();
         $(".landing-card").show();
         $(".loading-overlay").addClass("hidden");
