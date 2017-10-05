@@ -18,6 +18,8 @@
     direction: ltr;
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
+    position: relative;
+    top: -2px;
 }
 body {
     background-color: #fff;
@@ -79,7 +81,7 @@ main {
 }
 .oddadvice-pwa.mdl-layout .mdl-layout__header .mdl-layout__drawer-button {
     color: #2b1100;
-    line-height: 2;
+    line-height: 2.2;
 }
 .oddadvice-pwa.mdl-layout .mdl-layout__header > .mdl-button.back-btn {
     color: #2b1100;
@@ -146,7 +148,7 @@ main {
     margin: 10px 0;
     box-sizing: border-box;
     font-weight: normal;
-    background-color: #f8f8f8;
+    background-color: #f2f2f2;
     height: auto;
     display: block;
 }
@@ -377,4 +379,11 @@ a.number-button.selected {
 #analyze-button[disabled]:before {
     content: "" attr(data-disabledlabel);
 }
-
+.back-btn.mdl-button:focus,
+.back-btn.mdl-button:focus:active {
+    background-color: transparent;
+}
+.mdl-spinner {
+    width: 50px;
+    height: 50px;
+}

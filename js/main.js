@@ -156,28 +156,34 @@ if (('serviceWorker' in navigator) && ('PushManager' in window)) {
             var gameType = $srcElem.data("game");
             var gameLabel = $srcElem.data("gamename");
 
-            $(".mdl-card").hide();
-            $(".back-btn, .mdl-layout__drawer-button, .mdl-layout-title").toggleClass("hidden");
-            $(".game-card-title, button", ".menu-card").attr({"data-game": gameType, "data-gamename": gameLabel})
-                .data({"game": gameType, "gamename": gameLabel});
+            setTimeout(function() {
+                $(".mdl-card").hide();
+                $(".back-btn, .mdl-layout__drawer-button, .mdl-layout-title").toggleClass("hidden");
+                $(".game-card-title, button", ".menu-card").attr({"data-game": gameType, "data-gamename": gameLabel})
+                    .data({"game": gameType, "gamename": gameLabel});
 
-            $(".menu-card").show();
+                $(".menu-card").show();
 
-            if ($(".mdl-layout__drawer.is-visible").length) {
-                layout.MaterialLayout.toggleDrawer();
-            }
+                if ($(".mdl-layout__drawer.is-visible").length) {
+                    layout.MaterialLayout.toggleDrawer();
+                }
+            }, 250)
+
         }).on("click", ".choose-own-numbers", function(e) {
             var $srcElem = $(e.currentTarget);
             var gameType = $srcElem.data("game");
             var gameLabel = $srcElem.data("gamename");
 
-            $(".mdl-card").hide();
-            $(".numbers-card").data("game", gameType)
-            $(".game-card-title", ".numbers-card").attr("data-gamename", gameLabel);
+            setTimeout(function() {
+                $(".mdl-card").hide();
+                $(".numbers-card").data("game", gameType)
+                $(".game-card-title", ".numbers-card").attr("data-gamename", gameLabel);
 
-            assembleGameNumbers(gameType);
+                assembleGameNumbers(gameType);
 
-            $(".numbers-card").show();
+                $(".numbers-card").show();
+            }, 250)
+
         }).on("click", ".back-btn", function(e) {
             var prevCard = $(".mdl-card:visible").data("prevscreen");
             $(".mdl-card").hide();
