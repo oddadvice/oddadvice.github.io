@@ -224,15 +224,15 @@ if (('serviceWorker' in navigator) && ('PushManager' in window)) {
             }
         }).on("click", ".number-button", function(e) {
             var $srcElem = $(e.currentTarget);
-
-            $("#analyze-button").prop("disabled", true);
-
+            
             if (!$srcElem.hasClass("selected")) {
                 if ($(".number-button.selected").length < 6) {
                     $srcElem.toggleClass("selected");
                     if ($(".number-button.selected").length == 6) {
                         $("#analyze-button").prop("disabled", false);
                         $(".mdl-layout__content").animate({ scrollTop: $('.mdl-layout__content').prop("scrollHeight")}, 1000);
+                    } else {
+                        $("#analyze-button").prop("disabled", true);
                     }
                 }
             } else {
