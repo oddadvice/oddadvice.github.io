@@ -6,6 +6,8 @@ if (('serviceWorker' in navigator) && ('PushManager' in window)) {
         cachedNotificationDeferred,
         cachedNotificationListDeferred;
 
+    var audio = new Audio('../audio/flush.mp3');
+
     $(".oddadvice-pwa.mdl-layout").removeClass("invisible");
 
     $(document).ready(function() {
@@ -214,7 +216,10 @@ if (('serviceWorker' in navigator) && ('PushManager' in window)) {
                     $("#analyze-button").prop("disabled", true);
                 }
             }
-
+        }).on("click", ".mdl-mini-footer .mdl-logo", function() {
+            audio.pause();
+            audio.currentTime = 0;
+            audio.play();
         })
     });
 } else {

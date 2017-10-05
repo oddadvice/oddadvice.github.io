@@ -26,7 +26,8 @@ var openDBRequest,
       '/js/main.js',
       '/js/material.min.js',
       '/js/mustache.min.js',
-      '/fonts/material-icons.woff2'
+      '/fonts/material-icons.woff2',
+      '/audio/flush.mp3'
     ];
 
 self.addEventListener("install", function(event) {
