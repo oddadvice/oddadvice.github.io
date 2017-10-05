@@ -223,7 +223,8 @@ if (('serviceWorker' in navigator) && ('PushManager' in window)) {
                 $(".back-btn, .mdl-layout__drawer-button, .mdl-layout-title").toggleClass("hidden");
             }
 
-            $(this).blur();
+            $(".mdl-layout__content").click();
+
         }).on("click", ".number-button", function(e) {
             var $srcElem = $(e.currentTarget);
 
