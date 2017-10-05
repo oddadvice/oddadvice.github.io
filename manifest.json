@@ -1,13 +1,13 @@
 {
-  "name": "TeamCast",
+  "name": "Odd Advice",
   "gcm_sender_id": "23153222404",
-  "short_name": "TeamCast",
+  "short_name": "Odd Advice",
   //"start_url": "./?utm_source=web_app_manifest",
   "start_url": "/?homescreen=1",
   "display": "standalone",
-  "theme_color": "#000080",
-  "background_color": "#000080",
-  "version": "Hackathon 2016",
+  "theme_color": "#ffd42a",
+  "background_color": "#ffd42a",
+  "version": "Hackathon 2017",
   "orientation": "portrait",
   "icons": [
     {

@@ -20,17 +20,18 @@
     -webkit-font-smoothing: antialiased;
 }
 body {
-    background-color: #eee;
+    background-color: #fff;
     font-family: "Roboto regular", "Droid sans", sans-serif;
 }
 h2,
 .mdl-card__title h2 {
-    color: #000080;
+    color: #000;
     font-size: 24px;
     font-weight: 300;
     line-height: normal;
     margin: 0;
-    max-width: 70%;
+    display: block;
+    width: 100%;
 }
 p {
     word-wrap: break-word;
@@ -45,9 +46,12 @@ main {
     max-width: 600px;
     margin: 0 auto;
     padding: 10px 10px 0;
-    height: 100%;
+    /*height: 100%;*/
     box-sizing: border-box;
 
+}
+.text-color-red {
+    color: #ff0000 !important;
 }
 .hidden {
     display: none !important;
@@ -62,21 +66,26 @@ main {
     color: red;
 }
 .text-color-blue {
-    color: #000080;
+    color: #000;
 }
-.teamcast-pwa.mdl-layout .mdl-layout__header {
-    background-color: #000080;
+.oddadvice-pwa.mdl-layout .mdl-layout__header {
+    background-color: #ffd42a;
     background-image: url("../images/logo.svg");
     background-position: calc(100% - 15px) center;
     background-size: auto 70%;
     background-repeat: no-repeat;
     z-index: 5;
+    color: #2b1100;
 }
-.teamcast-pwa.mdl-layout .mdl-layout__header > .mdl-button.inbox-back-btn {
-    color: white;
+.oddadvice-pwa.mdl-layout .mdl-layout__header .mdl-layout__drawer-button {
+    color: #2b1100;
+    line-height: 2;
+}
+.oddadvice-pwa.mdl-layout .mdl-layout__header > .mdl-button.back-btn {
+    color: #2b1100;
     display: block;
 }
-.teamcast-pwa.mdl-layout .mdl-layout__content > .loading-overlay {
+.oddadvice-pwa.mdl-layout .mdl-layout__content > .loading-overlay {
     position: fixed;
     display: table;
     height: 100%;
@@ -86,115 +95,126 @@ main {
     background-color: #fff;
     z-index: 10;
 }
-.teamcast-pwa.mdl-layout .mdl-layout__content > .loading-overlay > .loading-overlay-row {
+.oddadvice-pwa.mdl-layout .mdl-layout__content > .loading-overlay > .loading-overlay-row {
     display: table-row;
 }
-.teamcast-pwa.mdl-layout .mdl-layout__content > .loading-overlay > .loading-overlay-row > .loading-overlay-col {
+.oddadvice-pwa.mdl-layout .mdl-layout__content > .loading-overlay > .loading-overlay-row > .loading-overlay-col {
     display: table-cell;
     vertical-align: middle;
     text-align: center;
 }
-.teamcast-pwa.mdl-layout .mdl-layout__content > .loading-overlay .mdl-spinner > .mdl-spinner__layer-1 {
-    border-color: #000080;
+.oddadvice-pwa.mdl-layout .mdl-layout__content > .loading-overlay .mdl-spinner > .mdl-spinner__layer-1 {
+    border-color: #000;
 }
-.teamcast-pwa.mdl-layout .mdl-layout__content > .loading-overlay .mdl-spinner > .mdl-spinner__layer-2 {
+.oddadvice-pwa.mdl-layout .mdl-layout__content > .loading-overlay .mdl-spinner > .mdl-spinner__layer-2 {
     border-color: #40B4E5;
 }
-.teamcast-pwa.mdl-layout .mdl-layout__content > .loading-overlay .mdl-spinner > .mdl-spinner__layer-3 {
+.oddadvice-pwa.mdl-layout .mdl-layout__content > .loading-overlay .mdl-spinner > .mdl-spinner__layer-3 {
     border-color: #82BC00;
 }
-.teamcast-pwa.mdl-layout .mdl-layout__content > .loading-overlay .mdl-spinner > .mdl-spinner__layer-4 {
+.oddadvice-pwa.mdl-layout .mdl-layout__content > .loading-overlay .mdl-spinner > .mdl-spinner__layer-4 {
     border-color: #40B4E5;
 }
-.teamcast-pwa.mdl-layout .mdl-card {
+.oddadvice-pwa.mdl-layout .mdl-card {
     width: 100%;
     margin: 0 0 10px;
     background-color: white;
     min-height: initial;
     display: none;
+    box-shadow: none;
 }
-.teamcast-pwa.mdl-layout .mdl-card h3.quote:before,
-.teamcast-pwa.mdl-layout .mdl-card h3.quote:after {
+.oddadvice-pwa.mdl-layout .mdl-card h3.quote:before,
+.oddadvice-pwa.mdl-layout .mdl-card h3.quote:after {
     display: block;
     font-size: 3em;
     margin-top: 0.5em;
 }
-.teamcast-pwa.mdl-layout .mdl-card h3.quote:before {
+.oddadvice-pwa.mdl-layout .mdl-card h3.quote:before {
     content: open-quote;
 }
-.teamcast-pwa.mdl-layout .mdl-card h3.quote:after {
+.oddadvice-pwa.mdl-layout .mdl-card h3.quote:after {
     content: close-quote;
 }
-.teamcast-pwa.mdl-layout .testimonial.mdl-card .mdl-card__title {
+.oddadvice-pwa.mdl-layout .testimonial.mdl-card .mdl-card__title {
     color: white;
     background-color: #82bc00;
 }
-.teamcast-pwa.mdl-layout .mdl-button:not([disabled]) {
-    color: #000080;
-    font-weight: bold;
+.oddadvice-pwa.mdl-layout .mdl-button.full-width {
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    font-weight: normal;
+    background-color: #f8f8f8;
+    height: auto;
+    display: block;
 }
-.teamcast-pwa.mdl-layout .mdl-button.mdl-button--colored {
-    background-color: #000080;
+.oddadvice-pwa.mdl-layout .mdl-button:not([disabled]) {
+    color: #000;
+}
+.oddadvice-pwa.mdl-layout .mdl-button.mdl-button--colored {
+    background-color: #000;
     color: white;
 }
-.teamcast-pwa.mdl-layout .mdl-card__supporting-text {
+.oddadvice-pwa.mdl-layout .mdl-card__supporting-text {
     line-height: 24px;
     font-size: 1.1rem;
 }
-.teamcast-pwa.mdl-layout .employee-name {
+.oddadvice-pwa.mdl-layout .employee-name {
     text-transform: capitalize;
     text-indent: 8px;
 }
-.teamcast-pwa.mdl-layout .mdl-radio {
+.oddadvice-pwa.mdl-layout .mdl-radio {
     display: block;
     text-align: left;
     margin-bottom: 10px;
 }
-.teamcast-pwa.mdl-layout .mdl-radio.is-checked {
-    color: #000080;
+.oddadvice-pwa.mdl-layout .mdl-radio.is-checked {
+    color: #000;
 }
-.teamcast-pwa.mdl-layout .mdl-radio.is-checked .mdl-radio__inner-circle {
-    background-color: #000080;
+.oddadvice-pwa.mdl-layout .mdl-radio.is-checked .mdl-radio__inner-circle {
+    background-color: #000;
 }
-.teamcast-pwa.mdl-layout .mdl-mini-footer {
+.oddadvice-pwa.mdl-layout .mdl-mini-footer {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     padding: 15px;
     font-size: 11px;
-    background-color: #40B4E5;
+    background-color: #000;
     display: block;
     background-image: url("../images/asurion-logo-white.svg");
     background-position: calc(100% - 15px) center;
     background-size: 100px auto;
     background-repeat: no-repeat;
-    border-top: solid 2px #82BC00;
     z-index: 5;
 }
 @media (max-height: 320px) {
     main {
         margin-bottom: 0;
     }
-    .teamcast-pwa.mdl-layout .mdl-mini-footer {
+    .oddadvice-pwa.mdl-layout .mdl-mini-footer {
         display: none;
     }
 }
-.teamcast-pwa.mdl-layout .mdl-mini-footer .mdl-mini-footer__left-section .mdl-logo {
+.oddadvice-pwa.mdl-layout .mdl-mini-footer .mdl-mini-footer__left-section .mdl-logo {
     padding-left: 25px;
     line-height: 1.4;
     margin: 0;
-    background-image: url("../images/team-jackd-logo.svg");
+    background-image: url("../images/team-jackd-logo-mustard.svg");
     background-position: left center;
     background-size: auto 100%;
     background-repeat: no-repeat;
+    color: #FFD42A;
 }
 #unsubscribe-btn,
 #profile-btn,
 #inbox-btn {
     display: none;
 }
-.teamcast-pwa.mdl-layout .card-close-btn {
+.oddadvice-pwa.mdl-layout .card-close-btn {
     position: absolute;
     top: 0;
     right: 0;
@@ -204,18 +224,18 @@ main {
     line-height: normal;
     height: auto;
 }
-.teamcast-pwa.mdl-layout .mdl-card.has-media .mdl-card__title {
+.oddadvice-pwa.mdl-layout .mdl-card.has-media .mdl-card__title {
     height: 200px;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
 }
-.teamcast-pwa.mdl-layout .mdl-card.has-media .mdl-card__title h2 {
+.oddadvice-pwa.mdl-layout .mdl-card.has-media .mdl-card__title h2 {
     color: white;
     background-color: rgba(0,0,0,0.25);
     padding: 2px 5px;
 }
-.teamcast-pwa.mdl-layout .mdl-card.has-media .card-close-btn {
+.oddadvice-pwa.mdl-layout .mdl-card.has-media .card-close-btn {
     color: white;
     background-color: rgba(0,0,0,0.125);
 }
@@ -225,7 +245,7 @@ main {
 .mdl-layout__obfuscator {
     z-index: 5;
 }
-.teamcast-pwa.mdl-layout .mdl-card.about-card .mdl-card__title {
+.oddadvice-pwa.mdl-layout .mdl-card.about-card .mdl-card__title {
     background-image: url("../images/about-img.gif");
     background-color: #3D3C53;
     background-size: auto 100%;
@@ -243,37 +263,37 @@ main {
 .profile-card input[type=text] {
     border: 0;
     font-size: 1rem;
-    color: #000080;
+    color: #000;
 }
-.teamcast-pwa.mdl-layout .not-supported-card {
+.oddadvice-pwa.mdl-layout .not-supported-card {
     background-color: transparent;
 }
-.teamcast-pwa.mdl-layout .not-supported-card .mdl-card__supporting-text > ul {
+.oddadvice-pwa.mdl-layout .not-supported-card .mdl-card__supporting-text > ul {
     list-style-type: none;
     padding: 0;
 }
-.teamcast-pwa.mdl-layout .not-supported-card .mdl-card__supporting-text > ul > li {
+.oddadvice-pwa.mdl-layout .not-supported-card .mdl-card__supporting-text > ul > li {
     padding-bottom: 10px;
 }
-.teamcast-pwa.mdl-layout .not-supported-card .material-icons {
+.oddadvice-pwa.mdl-layout .not-supported-card .material-icons {
     vertical-align: middle;
     font-size: 20px;
     margin-right: 5px;
 }
-.teamcast-pwa.mdl-layout .mdl-layout__drawer {
+.oddadvice-pwa.mdl-layout .mdl-layout__drawer {
     border-right: 0;
 }
-.teamcast-pwa.mdl-layout .mdl-layout__drawer .mdl-layout-title {
-    color: white;
-    background-color: #000080;
-    background-image: url("../images/teamcast-icon.png");
-    background-size: auto 80px;
+.oddadvice-pwa.mdl-layout .mdl-layout__drawer .mdl-layout-title {
+    color: #2B1100;
+    background-color: #FFD42A;
+    background-image: url("../images/odd-advice-icon.png");
+    background-size: auto 60px;
     background-repeat: no-repeat;
     background-position: 15px center;
     text-align: right;
     padding: 15px 40px;
 }
-.teamcast-pwa.mdl-layout .testimonial-card {
+.oddadvice-pwa.mdl-layout .testimonial-card {
     color: white;
     background-image: url("../images/testimonial-bg.jpg");
     background-size: auto 235px;
@@ -283,12 +303,12 @@ main {
     background-color: black;
     min-height: 120px;
 }
-.teamcast-pwa.mdl-layout .testimonial-card p {
+.oddadvice-pwa.mdl-layout .testimonial-card p {
     font-size: 1.2rem;
     width: 50%;
 }
 
-.teamcast-pwa.mdl-layout .inbox-card {
+.oddadvice-pwa.mdl-layout .inbox-card {
     height: calc(100% - 10px);
     overflow-y: auto;
     margin: 0;
@@ -313,7 +333,7 @@ main {
     height: auto;
     padding: 0;
 }
-.teamcast-pwa.mdl-layout .inbox-card .mdl-list button {
+.oddadvice-pwa.mdl-layout .inbox-card .mdl-list button {
     height: auto;
     text-align: left;
     width: 100%;
@@ -323,5 +343,38 @@ main {
 
 #subscription-form input[type=text] {
     text-transform: capitalize;
+}
+.numbers-container {
+    padding: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+a.number-button {
+    margin: 10px;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    background-color: #e8e8e8;
+    border-radius: 50%;
+    text-decoration: none;
+    color: red;
+}
+a.number-button.selected {
+    background-color: #FFD42A;
+    color: #000;
+    font-weight: bold;
+}
+.game-card .game-card-title:before {
+    content: "" attr(data-gamename);
+    text-transform: uppercase;
+}
+#analyze-button:not([disabled]):before {
+    content: "" attr(data-activelabel);
+}
+#analyze-button[disabled]:before {
+    content: "" attr(data-disabledlabel);
 }
 
