@@ -222,6 +222,8 @@ if (('serviceWorker' in navigator) && ('PushManager' in window)) {
             if (prevCard == ".landing-card") {
                 $(".back-btn, .mdl-layout__drawer-button, .mdl-layout-title").toggleClass("hidden");
             }
+
+            $(this).blur();
         }).on("click", ".number-button", function(e) {
             var $srcElem = $(e.currentTarget);
 
