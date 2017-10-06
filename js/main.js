@@ -93,6 +93,76 @@ $(document).ready(function() {
         }
     }
 
+    var showAdvice = function(gameType, gameLabel, data) {
+        var combiTestTemplate = $("#combination-tests-template").html();
+        var numTestTemplate = $("#numbers-tests-template").html();
+
+        $(".advice-combination-container").empty();
+        $(".advice-numbers-container").empty();
+
+        if (data) {
+            if (data["groupAdvises"].length) {
+                data["groupAdvises"].forEach(function(a) {
+                    if (a.additional.sum) {
+                        var lowWidthPct = ((a.additional.lowLimitSum / a.additional.highLimitSum) * 100);
+                        var highWidthPct = (100 - lowWidthPct);
+                        a.highWidthPct = highWidthPct + "%";
+                        a.sumPosition = "left";
+
+                        if (a.additional.sum > a.additional.highLimitSum) {
+                            a.sumPosition = "right";
+                        }
+                    }
+
+                    var groupTestMarkup = Mustache.to_html(combiTestTemplate, a);
+
+                    $(".advice-combination-container").append(groupTestMarkup);
+                });
+            }
+
+            if (data["numberAdvises"].length) {
+                data["numberAdvises"].forEach(function(b) {
+                    var numberTestMarkup = Mustache.to_html(numTestTemplate, b);
+
+                    $(".advice-numbers-container").append(numberTestMarkup);
+                });
+            }
+
+            $(".mdl-card").hide();
+            $(".mdl-layout__content").scrollTop(0);
+            $(".advice-card").data({"game": gameType, "gamename": gameLabel});
+            $(".game-card-title", ".advice-card").attr("data-gamename", gameLabel);
+            $(".advice-card").show();
+        }
+    }
+
+    var showRandomCombination = function(gameType, gameLabel, data) {
+        if (data) {
+            $(".mdl-card").hide();
+            var template = $("#random-number-template").html();
+
+            $(".random-numbers-container").empty();
+            if (data.optimizedNumberCombination) {
+                var count = 0;
+                data.optimizedNumberCombination.sort(function(a, b) {
+                    return a - b;
+                }).forEach(function(x) {
+                    var numberItemMarkup = Mustache.to_html(template, {"number": x});
+
+                    if (count == 2) {
+                        numberItemMarkup = numberItemMarkup + "<br/>";
+                    }
+
+                    $(".random-numbers-container").append(numberItemMarkup);
+                    count++;
+                })
+            }
+            $(".game-card-title", ".random-card").attr("data-gamename", gameLabel);
+            $(".random-card, .random-numbers").data({"game": gameType, "gamename": gameLabel})
+                .show();
+        }
+    }
+
     if (('serviceWorker' in navigator) && ('PushManager' in window)) {
         console.log('Service Worker is supported');
 
@@ -163,8 +233,8 @@ $(document).ready(function() {
         setTimeout(function() {
             $(".mdl-card").hide();
             $(".back-btn, .mdl-layout__drawer-button, .mdl-layout-title").toggleClass("hidden");
+            $(".menu-card").data({"game": gameType, "gamename": gameLabel});
             $(".game-card-title, button", ".menu-card").attr({"data-game": gameType, "data-gamename": gameLabel})
-                .data({"game": gameType, "gamename": gameLabel});
 
             $(".menu-card").show();
 
@@ -175,12 +245,12 @@ $(document).ready(function() {
 
     }).on("click", ".choose-own-numbers", function(e) {
         var $srcElem = $(e.currentTarget);
-        var gameType = $srcElem.data("game");
-        var gameLabel = $srcElem.data("gamename");
+        var gameType = $srcElem.parents(".game-card").data("game");
+        var gameLabel = $srcElem.parents(".game-card").data("gamename");
 
         setTimeout(function() {
             $(".mdl-card").hide();
-            $(".numbers-card").data("game", gameType)
+            $(".numbers-card").data({"game": gameType, "gamename": gameLabel});
             $(".game-card-title", ".numbers-card").attr("data-gamename", gameLabel);
 
             assembleGameNumbers(gameType);
@@ -197,8 +267,7 @@ $(document).ready(function() {
             $(".back-btn, .mdl-layout__drawer-button, .mdl-layout-title").toggleClass("hidden");
         }
 
-        $(".mdl-layout__content").click();
-
+        $(".mdl-layout__content").scrollTop(0);
     }).on("click", ".number-button", function(e) {
         var $srcElem = $(e.currentTarget);
 
@@ -223,9 +292,12 @@ $(document).ready(function() {
         audio.currentTime = 0;
         audio.play();
     }).on("click", "#analyze-button", function(e) {
+        var gameType = $(".numbers-card").data("game");
+        var gameLabel = $(".numbers-card").data("gamename");
+
         var data = {
             bets: [],
-            game: parseInt($(".numbers-card").data("game"))
+            game: parseInt(gameType)
         };
 
         $(".number-button.selected").each(function() {
@@ -242,7 +314,30 @@ $(document).ready(function() {
                 $(".loading-overlay").removeClass("hidden");
             },
             success: function(resp) {
-                console.log(resp)
+                console.log(resp);
+                showAdvice(gameType, gameLabel, resp);
+            },
+            error: function(jqxhr, error, thrownError) {
+                console.log(error)
+            },
+            complete: function() {
+                $(".loading-overlay").addClass("hidden");
+            }
+        });
+    }).on("click", ".random-numbers", function(e) {
+        var gameType = $(this).data("game");
+        var gameLabel = $(this).parents(".game-card").data("gamename");
+
+        $.ajax({
+            type: "GET",
+            url: "https://lotto.fossil-cloud.net/lotto-randomizer?input=" + gameType,
+            beforeSend: function() {
+                $(".loading-overlay").removeClass("hidden");
+            },
+            success: function(resp) {
+                console.log(resp);
+                $(".mdl-card").hide();
+                showRandomCombination(gameType, gameLabel, resp);
             },
             error: function(jqxhr, error, thrownError) {
                 console.log(error)
@@ -252,6 +347,7 @@ $(document).ready(function() {
             }
         });
     })
+
 });
 
 

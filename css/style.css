@@ -387,4 +387,112 @@ a.number-button.selected {
 .mdl-spinner {
     width: 50px;
     height: 50px;
+    margin-top: -50px;
+}
+span.group-result[data-result=true]:before {
+    content: "Passed";
+    color: green;
+    font-weight: 600;
+}
+span.group-result[data-result=false]:before {
+    content: "Failed";
+    color: red;font-weight: 600;
+}
+
+span.number-result[data-result=great]:before {
+    content: "Great!";
+    color: blue;
+    font-weight: 600;
+}
+span.number-result[data-result=good]:before {
+    content: "Good";
+    color: green;
+    font-weight: 600;
+}
+span.number-result[data-result=neutral]:before {
+    content: "Neutral";
+    color: darkorange;
+    font-weight: 600;
+}
+span.number-result[data-result=bad]:before {
+    content: "Weak!";
+    color: red;
+    font-weight: 600;
+}
+h3 {
+    font-size: 1.8rem;
+    margin-top: 0;
+}
+.numbers-test-left {
+    display: inline-block;
+    vertical-align: top;
+    width: 50px;
+    box-sizing: content-box;
+}
+.numbers-test-left > .indv-number {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    color: #000;
+    background-color: #FFD42A;
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 40px;
+    border-radius: 50%;
+}
+.numbers-test-right {
+    display: inline-block;
+    width: calc(100% - 60px);
+}
+.number-result-row {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: solid 1px #e8e8e8;
+}
+.number-result-row:last-child {
+    border-bottom: none;
+}
+.sum-test-graph[data-sumposition=left] > span {
+    float: right;
+}
+.sum-test-graph[data-sumposition=right] > span {
+    float: left;
+}
+.sum-test-graph:before {
+    position: absolute;
+    content: attr(data-combisum);
+    font-size: 0.938rem;
+    color: black;
+    left: 0;
+    top: calc(100% + 2px);
+}
+.sum-test-graph[data-sumposition=right]:before {
+    left: auto;
+    right: 0;
+}
+.sum-test-graph:after {
+    position: absolute;
+    content: attr(data-passsumrange);
+    font-size: 0.938rem;
+    color: green;
+    right: 0;
+    top: calc(100% + 2px);
+}
+.sum-test-graph[data-sumposition=right]:after {
+    left: 0;
+    right: auto;
+}
+span.random-number {
+    display: inline-block;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    line-height: 50px;
+    font-weight: 600;
+    margin: 10px;
+    color: black;
+    background-color: #FFD42A;
+    border-radius: 50%;
 }

@@ -111,7 +111,7 @@
                 </div>
             </div>
 
-            <div class="numbers-card game-card mdl-card mdl-shadow--2dp" data-prevscreen=".menu-card" data-game="">
+            <div class="numbers-card game-card mdl-card mdl-shadow--2dp" data-prevscreen=".menu-card" data-game="" data-gamename="">
                 <div class="mdl-card__title">
                     <h2 class="align-center game-card-title" data-gamename=""></h2>
                 </div>
@@ -119,6 +119,38 @@
                 </div>
                 <div class="mdl-card__actions mdl-card--border">
                     <button type="button" id="analyze-button" class="mdl-button mdl-js-button mdl-js-ripple-effect full-width" data-activelabel="get advice" data-disabledlabel="choose 6 numbers" disabled>
+                    </button>
+                </div>
+            </div>
+
+            <div class="advice-card game-card mdl-card mdl-shadow--2dp" data-prevscreen=".numbers-card" data-game="" data-gamename="">
+                <div class="mdl-card__title">
+                    <h2 class="align-center game-card-title" data-gamename=""></h2>
+                </div>
+                <div class="advice-container" style="padding: 0 1.5rem 1.5rem;">
+                    <h3>Combination analysis:</h3>
+                    <div class="advice-combination-container" style="margin-bottom: 1.5rem;"></div>
+
+                    <h3>Number analysis:</h3>
+                    <div class="advice-numbers-container">
+                    </div>
+                </div>
+                <!--<div class="mdl-card__actions mdl-card--border">
+                    <button type="button" class="save-button mdl-button mdl-js-button mdl-js-ripple-effect full-width">
+                        Save combination
+                    </button>
+                </div>-->
+            </div>
+
+            <div class="random-card game-card mdl-card mdl-shadow--2dp" data-prevscreen=".menu-card" data-game="" data-gamename="">
+                <div class="mdl-card__title">
+                    <h2 class="align-center game-card-title" data-gamename=""></h2>
+                </div>
+                <h3 class="align-center">Optimal combination:</h3>
+                <div class="random-numbers-container align-center" style="margin-bottom: 2rem;"></div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <button type="button" class="random-numbers mdl-button mdl-js-button mdl-js-ripple-effect full-width" data-game="">
+                        Give me another
                     </button>
                 </div>
             </div>
@@ -192,6 +224,50 @@
 
 <script type="text/html" id="number-template">
     <a href="#" class="number-button" data-numval="{{number}}">{{number}}</a>
+</script>
+
+<script type="text/html" id="random-number-template">
+    <span class="random-number" data-numval="{{number}}">{{number}}</span>
+</script>
+
+<script type="text/html" id="combination-tests-template">
+    <div style="margin-bottom: 1.5rem;">
+        <p style="margin-bottom: 0; border-bottom: solid 1px #e8e8e8;">
+            <strong>{{type}}</strong>:<span class="group-result" style="float: right; vertical-align: middle;" data-result="{{satisfied}}"></span>
+        </p>
+        {{#additional.advise}}
+        <p style="padding-top: 5px; line-height: 1.3">{{additional.advise}}</p>
+        {{/additional.advise}}
+
+        {{^additional.advise}}
+            {{#additional.sum}}
+                <div class="sum-test-graph" style="position: relative; background-color: #d8d8d8; height: 2px; overflow: visible; margin: -1px 0 3.25rem;"
+                     data-combisum="Your sum: {{additional.sum}}"
+                     data-passsumrange="Good range: {{additional.lowLimitSum}}-{{additional.highLimitSum}}"
+                     data-sumposition="{{sumPosition}}">
+                    <span style="display: inline-block; background-color: green; width: {{highWidthPct}};  height: 2px;">
+                    </span>
+                </div>
+            {{/additional.sum}}
+            {{^additional.sum}}
+                <p>Good choice!</p>
+            {{/additional.sum}}
+        {{/additional.advise}}
+    </div>
+</script>
+
+<script type="text/html" id="numbers-tests-template">
+    <div class="number-result-row">
+        <div class="numbers-test-left">
+            <span class="indv-number">{{number}}</span>
+        </div>
+        <div class="numbers-test-right">
+            <p style="margin-bottom: 0;">Score: <span class="number-result" data-result="{{score}}"></span></p>
+            <ul style="margin: 0; padding-left: 45px;">
+                {{#advises}}<li>{{.}}</li>{{/advises}}
+            </ul>
+        </div>
+    </div>
 </script>
 
 </body>
