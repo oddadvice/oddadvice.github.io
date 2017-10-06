@@ -1,7 +1,7 @@
 {
-  "name": "Odd Advice",
+  "name": "Oddvisor",
   "gcm_sender_id": "23153222404",
-  "short_name": "Odd Advice",
+  "short_name": "Oddvisor",
   //"start_url": "./?utm_source=web_app_manifest",
   "start_url": "/?homescreen=1",
   "display": "standalone",
