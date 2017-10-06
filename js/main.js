@@ -242,7 +242,7 @@ $(document).ready(function() {
             if ($(".mdl-layout__drawer.is-visible").length) {
                 layout.MaterialLayout.toggleDrawer();
             }
-        }, 250)
+        }, 500)
 
     }).on("click", ".choose-own-numbers", function(e) {
         var $srcElem = $(e.currentTarget);
@@ -257,7 +257,7 @@ $(document).ready(function() {
             assembleGameNumbers(gameType);
 
             $(".numbers-card").show();
-        }, 250)
+        }, 500)
 
     }).on("click", ".back-btn", function(e) {
         var prevCard = $(".mdl-card:visible").data("prevscreen");
