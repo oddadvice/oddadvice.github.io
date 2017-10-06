@@ -305,48 +305,53 @@ $(document).ready(function() {
             data.bets.push($(this).data("numval"));
         });
 
-        $.ajax({
-            type: "POST",
-            data: JSON.stringify(data),
-            dataType: 'json',
-            contentType: "application/json",
-            url: "https://lotto.fossil-cloud.net/lottoadvise",
-            beforeSend: function() {
-                $(".loading-overlay").removeClass("hidden");
-            },
-            success: function(resp) {
-                console.log(resp);
-                showAdvice(gameType, gameLabel, resp);
-            },
-            error: function(jqxhr, error, thrownError) {
-                console.log(error)
-            },
-            complete: function() {
-                $(".loading-overlay").addClass("hidden");
-            }
-        });
+        setTimeout(function() {
+            $.ajax({
+                type: "POST",
+                data: JSON.stringify(data),
+                dataType: 'json',
+                contentType: "application/json",
+                url: "https://lotto.fossil-cloud.net/lottoadvise",
+                beforeSend: function() {
+                    $(".loading-overlay").removeClass("hidden");
+                },
+                success: function(resp) {
+                    console.log(resp);
+                    showAdvice(gameType, gameLabel, resp);
+                },
+                error: function(jqxhr, error, thrownError) {
+                    console.log(error)
+                },
+                complete: function() {
+                    $(".loading-overlay").addClass("hidden");
+                }
+            });
+        }, 500);
     }).on("click", ".random-numbers", function(e) {
         var gameType = $(this).data("game");
         var gameLabel = $(this).parents(".game-card").data("gamename");
 
-        $.ajax({
-            type: "GET",
-            url: "https://lotto.fossil-cloud.net/lotto-randomizer?input=" + gameType,
-            beforeSend: function() {
-                $(".loading-overlay").removeClass("hidden");
-            },
-            success: function(resp) {
-                console.log(resp);
-                $(".mdl-card").hide();
-                showRandomCombination(gameType, gameLabel, resp);
-            },
-            error: function(jqxhr, error, thrownError) {
-                console.log(error)
-            },
-            complete: function() {
-                $(".loading-overlay").addClass("hidden");
-            }
-        });
+        setTimeout(function() {
+            $.ajax({
+                type: "GET",
+                url: "https://lotto.fossil-cloud.net/lotto-randomizer?input=" + gameType,
+                beforeSend: function() {
+                    $(".loading-overlay").removeClass("hidden");
+                },
+                success: function(resp) {
+                    console.log(resp);
+                    $(".mdl-card").hide();
+                    showRandomCombination(gameType, gameLabel, resp);
+                },
+                error: function(jqxhr, error, thrownError) {
+                    console.log(error)
+                },
+                complete: function() {
+                    $(".loading-overlay").addClass("hidden");
+                }
+            });
+        }, 500);
+
     })
 
 });
