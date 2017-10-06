@@ -84,6 +84,7 @@ $(document).ready(function() {
         var num = 1;
 
         $(".numbers-container").empty();
+        $("#analyze-button").prop("disabled", true);
 
         while(num <= limit) {
             var numberItemMarkup = Mustache.to_html(template, {"number": num});
