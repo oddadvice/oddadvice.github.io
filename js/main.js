@@ -94,7 +94,9 @@ $(document).ready(function() {
         }
     }
 
-    var showAdvice = function(gameType, gameLabel, data) {
+    var showAdvice = function(data) {
+        var gameType = sessionStorage.getItem("gameType");
+        var gameLabel = sessionStorage.getItem("gameLabel");
         var combiTestTemplate = $("#combination-tests-template").html();
         var numTestTemplate = $("#numbers-tests-template").html();
 
@@ -131,13 +133,15 @@ $(document).ready(function() {
 
             $(".mdl-card").hide();
             $(".mdl-layout__content").scrollTop(0);
-            $(".advice-card").data({"game": gameType, "gamename": gameLabel});
             $(".game-card-title", ".advice-card").attr("data-gamename", gameLabel);
             $(".advice-card").show();
         }
     }
 
-    var showRandomCombination = function(gameType, gameLabel, data) {
+    var showRandomCombination = function(data) {
+        var gameType = sessionStorage.getItem("gameType");
+        var gameLabel = sessionStorage.getItem("gameLabel");
+
         if (data) {
             $(".mdl-card").hide();
             var template = $("#random-number-template").html();
@@ -159,8 +163,7 @@ $(document).ready(function() {
                 })
             }
             $(".game-card-title", ".random-card").attr("data-gamename", gameLabel);
-            $(".random-card, .random-numbers").data({"game": gameType, "gamename": gameLabel})
-                .show();
+            $(".random-card").show();
         }
     }
 
@@ -231,12 +234,16 @@ $(document).ready(function() {
         var gameType = $srcElem.data("game");
         var gameLabel = $srcElem.data("gamename");
 
+        sessionStorage.removeItem("gameType");
+        sessionStorage.removeItem("gameLabel");
+
+        sessionStorage.setItem("gameType", gameType);
+        sessionStorage.setItem("gameLabel", gameLabel);
+
         setTimeout(function() {
             $(".mdl-card").hide();
             $(".back-btn, .mdl-layout__drawer-button, .mdl-layout-title").toggleClass("hidden");
-            $(".menu-card").data({"game": gameType, "gamename": gameLabel});
-            $(".game-card-title, button", ".menu-card").attr({"data-game": gameType, "data-gamename": gameLabel})
-
+            $(".game-card-title, button", ".menu-card").attr({"data-game": gameType, "data-gamename": gameLabel});
             $(".menu-card").show();
 
             if ($(".mdl-layout__drawer.is-visible").length) {
@@ -245,13 +252,11 @@ $(document).ready(function() {
         }, 500)
 
     }).on("click", ".choose-own-numbers", function(e) {
-        var $srcElem = $(e.currentTarget);
-        var gameType = $srcElem.parents(".game-card").data("game");
-        var gameLabel = $srcElem.parents(".game-card").data("gamename");
+        var gameType = sessionStorage.getItem("gameType");
+        var gameLabel = sessionStorage.getItem("gameLabel");
 
         setTimeout(function() {
             $(".mdl-card").hide();
-            $(".numbers-card").data({"game": gameType, "gamename": gameLabel});
             $(".game-card-title", ".numbers-card").attr("data-gamename", gameLabel);
 
             assembleGameNumbers(gameType);
@@ -293,9 +298,7 @@ $(document).ready(function() {
         audio.currentTime = 0;
         audio.play();
     }).on("click", "#analyze-button", function(e) {
-        var gameType = $(".numbers-card").data("game");
-        var gameLabel = $(".numbers-card").data("gamename");
-
+        var gameType = sessionStorage.getItem("gameType");
         var data = {
             bets: [],
             game: parseInt(gameType)
@@ -317,7 +320,7 @@ $(document).ready(function() {
                 },
                 success: function(resp) {
                     console.log(resp);
-                    showAdvice(gameType, gameLabel, resp);
+                    showAdvice(resp);
                 },
                 error: function(jqxhr, error, thrownError) {
                     console.log(error)
@@ -328,8 +331,7 @@ $(document).ready(function() {
             });
         }, 500);
     }).on("click", ".random-numbers", function(e) {
-        var gameType = $(this).data("game");
-        var gameLabel = $(this).parents(".game-card").data("gamename");
+        var gameType = sessionStorage.getItem("gameType");
 
         setTimeout(function() {
             $.ajax({
@@ -341,7 +343,7 @@ $(document).ready(function() {
                 success: function(resp) {
                     console.log(resp);
                     $(".mdl-card").hide();
-                    showRandomCombination(gameType, gameLabel, resp);
+                    showRandomCombination(resp);
                 },
                 error: function(jqxhr, error, thrownError) {
                     console.log(error)
