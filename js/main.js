@@ -223,7 +223,34 @@ $(document).ready(function() {
         audio.currentTime = 0;
         audio.play();
     }).on("click", "#analyze-button", function(e) {
-        
+        var data = {
+            bets: [],
+            game: parseInt($(".numbers-card").data("game"))
+        };
+
+        $(".number-button.selected").each(function() {
+            data.bets.push($(this).data("numval"));
+        });
+
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify(data),
+            dataType: 'json',
+            contentType: "application/json",
+            url: "https://lotto.fossil-cloud.net/lottoadvise",
+            beforeSend: function() {
+                $(".loading-overlay").removeClass("hidden");
+            },
+            success: function(resp) {
+                console.log(resp)
+            },
+            error: function(jqxhr, error, thrownError) {
+                console.log(error)
+            },
+            complete: function() {
+                $(".loading-overlay").addClass("hidden");
+            }
+        });
     })
 });
 
