@@ -148,10 +148,14 @@ $(document).ready(function() {
 
             $(".random-numbers-container").empty();
             if (data.optimizedNumberCombination) {
-                var count = 0;
-                data.optimizedNumberCombination.sort(function(a, b) {
+                var sortedCombination = data.optimizedNumberCombination.sort(function(a, b) {
                     return a - b;
-                }).forEach(function(x) {
+                });
+                var count = 0;
+
+                sessionStorage.setItem("optimizedCombination", sortedCombination.join(","));
+
+                sortedCombination.forEach(function(x) {
                     var numberItemMarkup = Mustache.to_html(template, {"number": x});
 
                     if (count == 2) {
@@ -297,16 +301,21 @@ $(document).ready(function() {
         audio.pause();
         audio.currentTime = 0;
         audio.play();
-    }).on("click", "#analyze-button", function(e) {
+    }).on("click", "[id^='analyze-button']", function(e) {
+        var $srcElem = $(e.currentTarget);
         var gameType = sessionStorage.getItem("gameType");
         var data = {
-            bets: [],
             game: parseInt(gameType)
         };
 
-        $(".number-button.selected").each(function() {
-            data.bets.push($(this).data("numval"));
-        });
+        if ($srcElem.data("random")) {
+            data["bets"] = sessionStorage.getItem("optimizedCombination").split(",");
+        } else {
+            data["bets"] = [];
+            $(".number-button.selected").each(function() {
+                data.bets.push($(this).data("numval"));
+            });
+        }
 
         setTimeout(function() {
             $.ajax({
