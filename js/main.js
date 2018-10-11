@@ -94,7 +94,7 @@ $(document).ready(function() {
         }
     }
 
-    var showAdvice = function(data) {
+    var showAdvice = function(data, isRandom) {
         var gameType = sessionStorage.getItem("gameType");
         var gameLabel = sessionStorage.getItem("gameLabel");
         var combiTestTemplate = $("#combination-tests-template").html();
@@ -134,6 +134,7 @@ $(document).ready(function() {
             $(".mdl-card").hide();
             $(".mdl-layout__content").scrollTop(0);
             $(".game-card-title", ".advice-card").attr("data-gamename", gameLabel);
+            $(".advice-card").attr("data-prevscreen", isRandom ? ".random-card" : ".numbers-card");
             $(".advice-card").show();
         }
     }
@@ -308,6 +309,7 @@ $(document).ready(function() {
             bets: [],
             game: parseInt(gameType)
         };
+        var isRandom = false;
 
         if ($srcElem.data("random")) {
             var arr = sessionStorage.getItem("optimizedCombination").split(",");
@@ -315,6 +317,8 @@ $(document).ready(function() {
             arr.forEach(function(x) {
                 data.bets.push(parseInt(x));
             });
+
+            isRandom = true;
         } else {
             data["bets"] = [];
             $(".number-button.selected").each(function() {
@@ -334,7 +338,7 @@ $(document).ready(function() {
                 },
                 success: function(resp) {
                     console.log(resp);
-                    showAdvice(resp);
+                    showAdvice(resp, isRandom);
                 },
                 error: function(jqxhr, error, thrownError) {
                     console.log(error)
