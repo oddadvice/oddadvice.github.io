@@ -305,11 +305,16 @@ $(document).ready(function() {
         var $srcElem = $(e.currentTarget);
         var gameType = sessionStorage.getItem("gameType");
         var data = {
+            bets: [],
             game: parseInt(gameType)
         };
 
         if ($srcElem.data("random")) {
-            data["bets"] = sessionStorage.getItem("optimizedCombination").split(",");
+            var arr = sessionStorage.getItem("optimizedCombination").split(",");
+
+            arr.forEach(function(x) {
+                data.bets.push(parseInt(x));
+            });
         } else {
             data["bets"] = [];
             $(".number-button.selected").each(function() {
