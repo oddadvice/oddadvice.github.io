@@ -134,7 +134,7 @@ $(document).ready(function() {
             $(".mdl-card").hide();
             $(".mdl-layout__content").scrollTop(0);
             $(".game-card-title", ".advice-card").attr("data-gamename", gameLabel);
-            $(".advice-card").attr("data-prevscreen", isRandom ? ".random-card" : ".numbers-card");
+            $(".advice-card").data("prevscreen", isRandom ? ".random-card" : ".numbers-card");
             $(".advice-card").show();
         }
     }
